@@ -1,0 +1,53 @@
+*{
+    margin: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+div{
+    margin: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.github-profile{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    border: 2px solid black;
+}
+  
+img{
+    flex: 1;
+    width: 120px;
+    border-radius: 12px;
+}
+  
+.info{
+    margin: 25px;
+    display: flex;
+    justify-content: center;
+    flex: 3;
+}
+  
+button{
+    flex: 1;
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    height: 25%;
+}
+  
+
