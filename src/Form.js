@@ -1,30 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react'
 import axios from 'axios';
-import './style.css';
+import { TextField, Button, Typography, Grid, Paper } from '@material-ui/core';
+import useStyles from './styles';
 
-export default class Form extends React.Component{
-    state = {username : ''};
+export default function Form(props) {
+    const [state, setState] = useState({username : ''});
+    const classes = useStyles();
 
-    handleChange = event => {
-        this.setState({ username: event.target.value })
+    const handleChange = event => {
+        setState({ username: event.target.value })
     }
 
-    handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const resp  = await axios.get(`https://api.github.com/users/${this.state.username}`);
-        this.props.addProfiles(resp.data);
-        this.setState({username: ''});
+        const resp  = await axios.get(`https://api.github.com/users/${state.username}`);
+        props.addProfiles(resp.data);
+        setState({username: ''});
     }
-    
-    render(){
-      return (
-          <div>
-             <h1>The Github Cards App</h1>
-             <form onSubmit = {this.handleSubmit}>
-                 <input type="text" value ={this.state.username} placeholder="Username..." onChange={this.handleChange} required />
-                 <button>Search</button>
-             </form >
-          </div>
-       );
-    }
-  }
+    return (
+        <div>
+            <Grid container direction="column" alignItems="center" justify="center" style={{ minHeight: '80vh'}}>
+                <Paper style={{ height: '200px', width:'700px', padding:'20px' }}>
+                        <Typography variant="h1" className ={classes.typography}>Github Search</Typography>
+                        <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
+                            <TextField name="username" variant="outlined" label="Username"onChange={handleChange} required/>
+                            <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit">Search</Button>
+                        </form>
+                </Paper>
+            </Grid>
+        </div>
+    );
+}

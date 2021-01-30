@@ -21,12 +21,16 @@ export default class App extends React.Component{
       });
   }
 
+  showProfile = (profileLogin)=>{
+      window.location.href = `https://github.com/${profileLogin}`;
+  }
+
   render(){
     return (
-        <>
-           <Form addProfiles={this.addProfiles} />
-           <CardList profiles= {this.state.profiles} deleteProfile = {this.deleteProfiles} />
-        </>
+        <div>
+          <Form addProfiles={this.addProfiles} />
+          <CardList profiles= {this.state.profiles} deleteProfile = {this.deleteProfiles} showProfile = {this.showProfile}/>
+        </div >
      );
   }
 }
